@@ -1,9 +1,9 @@
 package com.glinboy.telegram.bot.monitorspringboot.dto
 
 data class ValueLinkDTO(
-    val reference: ReferenceUnion? = null,
-    val guide: Guide? = null,
-    val home: Home? = null,
-    val other: Home? = null,
-    val sample: Home? = null
+    val reference: ReferenceUnionDTO? = null,
+    val guide: GuideDTO? = null,
+    val home: HomeDTO? = null,
+    val other: HomeDTO? = null,
+    val sample: HomeDTO? = null
 )
