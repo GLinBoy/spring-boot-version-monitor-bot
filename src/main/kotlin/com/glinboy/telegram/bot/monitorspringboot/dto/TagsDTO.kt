@@ -1,6 +1,6 @@
 package com.glinboy.telegram.bot.monitorspringboot.dto
 
-data class TagDTO(
+data class TagsDTO(
     val build: String? = null,
     val format: String? = null
 )
