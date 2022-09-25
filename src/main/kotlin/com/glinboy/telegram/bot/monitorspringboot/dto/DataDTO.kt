@@ -1,7 +1,7 @@
 package com.glinboy.telegram.bot.monitorspringboot.dto
 
 data class DataDTO(
-    val type: String? = null,
-    val default: String? = null,
-    val values: List<ValueDTO>? = null
+    val type: String?,
+    val default: String?,
+    val values: List<ValueDTO>?
 )

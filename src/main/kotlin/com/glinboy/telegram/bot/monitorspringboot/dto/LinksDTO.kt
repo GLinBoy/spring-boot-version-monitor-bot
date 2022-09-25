@@ -1,9 +1,9 @@
 package com.glinboy.telegram.bot.monitorspringboot.dto
 
 data class LinksDTO(
-    val mavenProject: LinkDataDTO? = null,
-    val mavenBuild: LinkDataDTO? = null,
-    val gradleProject: LinkDataDTO? = null,
-    val gradleBuild: LinkDataDTO? = null,
-    val dependencies: LinkDataDTO? = null
+    val mavenProject: LinkDataDTO?,
+    val mavenBuild: LinkDataDTO?,
+    val gradleProject: LinkDataDTO?,
+    val gradleBuild: LinkDataDTO?,
+    val dependencies: LinkDataDTO?
 )
