@@ -1,3 +1,0 @@
-
-application:
-  cron: "0 0 */3 * * *"
