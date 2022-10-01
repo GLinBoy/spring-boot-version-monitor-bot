@@ -19,6 +19,3 @@ management:
     web:
       exposure:
         include: "*"
-
-application:
-  cron: "0 0 */3 * * *"
