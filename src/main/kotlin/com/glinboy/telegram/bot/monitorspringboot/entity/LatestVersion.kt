@@ -5,5 +5,5 @@ import javax.persistence.Id
 
 @Entity
 data class LatestVersion(
-    @Id val version: String?
+    @Id val version: String? = null
 )
