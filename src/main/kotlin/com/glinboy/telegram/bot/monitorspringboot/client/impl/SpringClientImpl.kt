@@ -12,8 +12,9 @@ class SpringClientImpl: SpringClient {
 
     val restTemplate: RestTemplate = RestTemplateBuilder().build()
 
-    @Value("\${application.versions-url.spring-boot}")
+    @Value("\${application.version-url.spring-boot}")
     lateinit var springBootUrl: String
+
     override fun getSpringMetaData(): SpringResponseDTO? {
         return restTemplate.getForObject(
             springBootUrl,

@@ -4,7 +4,7 @@ spring:
 
 application:
   cron: "0 0 */3 * * *"
-  versions-url:
+  version-url:
     spring-boot: https://start.spring.io/metadata/client
-  releases-url:
+  release-url:
     spring-boot: https://github.com/spring-projects/spring-boot/releases/tag/v
