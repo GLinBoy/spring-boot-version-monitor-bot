@@ -21,4 +21,4 @@ management:
         include: "*"
 
 application:
-  cron: "*/10 * * * * *"
+  cron: "*/30 * * * * *"
