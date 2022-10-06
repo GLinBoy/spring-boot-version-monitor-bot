@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service
 class TelegramChatServiceImpl(
     private val repository: TelegramChatRepository
 ) : TelegramChatService,
-    GenericServiceImpl<TelegramChat, Long, TelegramChatRepository>(repository){
+    GenericServiceImpl<TelegramChat, Long, TelegramChatRepository>(repository) {
     override fun findAllChatId(): List<Long> = repository.findAllIdOnly()
 }

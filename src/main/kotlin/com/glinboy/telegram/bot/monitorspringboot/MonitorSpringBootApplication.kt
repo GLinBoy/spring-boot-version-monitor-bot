@@ -9,5 +9,5 @@ import org.springframework.scheduling.annotation.EnableScheduling
 class MonitorSpringBootApplication
 
 fun main(args: Array<String>) {
-	runApplication<MonitorSpringBootApplication>(*args)
+    runApplication<MonitorSpringBootApplication>(*args)
 }
