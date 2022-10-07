@@ -7,6 +7,7 @@ import com.glinboy.telegram.bot.monitorspringboot.entity.TelegramUser
 import com.glinboy.telegram.bot.monitorspringboot.service.TelegramChatService
 import com.glinboy.telegram.bot.monitorspringboot.service.TelegramMessageService
 import com.glinboy.telegram.bot.monitorspringboot.service.TelegramService
+import com.vdurmont.emoji.EmojiParser
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
@@ -30,6 +31,9 @@ class TelegramServiceImpl(
 
     @Value("\${application.secret.telegram-username}")
     lateinit var username: String
+
+    @Value("\${application.release-url.spring-boot}")
+    lateinit var releaseUrl: String
 
     override fun getBotToken(): String = token
 
@@ -70,11 +74,22 @@ class TelegramServiceImpl(
 
     override fun publishNewVersion(version: String) {
         telegramChatService.findAllChatId().forEach {
-            val message = SendMessage()
-            message.chatId = it.toString()
-            message.text = "New Version Arrived: $version"
+            val message = SendMessage.builder()
+                .chatId(it)
+                .text(
+                    EmojiParser.parseToUnicode(
+                        """
+                            :sparkles: New version has been released :sparkles:
+                            :rocket: $version
+
+                            :point_right: check here: $releaseUrl$version
+                        """.trimIndent()
+                    )
+                )
+                .build()
             try {
-                execute(message)
+                val result = execute(message)
+                log.info(om.writeValueAsString(result))
             } catch (ex: TelegramApiException) {
                 log.error("Couldn't send message to Telegram: {}", ex.localizedMessage, ex)
             }
