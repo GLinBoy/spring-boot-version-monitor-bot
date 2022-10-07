@@ -62,14 +62,6 @@ class TelegramServiceImpl(
             update?.message?.text
         )
         telegramMessageService.save(message)
-        log.info(
-            "A new message from {} {} ({}): {}",
-            update?.message?.messageId,
-            update?.message?.from?.firstName,
-            update?.message?.from?.lastName,
-            update?.message?.from?.id,
-            update?.message?.text
-        )
     }
 
     override fun publishNewVersion(version: String) {
