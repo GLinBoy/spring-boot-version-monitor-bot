@@ -1,9 +1,7 @@
 package com.glinboy.telegram.bot.monitorspringboot.service.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.glinboy.telegram.bot.monitorspringboot.entity.TelegramChat
-import com.glinboy.telegram.bot.monitorspringboot.entity.TelegramMessage
-import com.glinboy.telegram.bot.monitorspringboot.entity.TelegramUser
+import com.glinboy.telegram.bot.monitorspringboot.mapper.TelegramMessageMapper
 import com.glinboy.telegram.bot.monitorspringboot.service.TelegramChatService
 import com.glinboy.telegram.bot.monitorspringboot.service.TelegramMessageService
 import com.glinboy.telegram.bot.monitorspringboot.service.TelegramService
@@ -41,26 +39,7 @@ class TelegramServiceImpl(
 
     override fun onUpdateReceived(update: Update?) {
         log.info(om.writeValueAsString(update))
-        val message = TelegramMessage(
-            update?.message?.messageId?.toLong(),
-            TelegramUser(
-                update?.message?.from?.id,
-                update?.message?.from?.firstName,
-                update?.message?.from?.lastName,
-                update?.message?.from?.userName,
-                update?.message?.from?.languageCode,
-                update?.message?.from?.isBot
-            ),
-            TelegramChat(
-                update?.message?.chat?.id,
-                update?.message?.chat?.type,
-                update?.message?.chat?.firstName,
-                update?.message?.chat?.lastName,
-                update?.message?.chat?.userName,
-            ),
-            update?.message?.date?.toLong(),
-            update?.message?.text
-        )
+        val message = TelegramMessageMapper.toTelegramMessage(update)
         telegramMessageService.save(message)
     }
 
