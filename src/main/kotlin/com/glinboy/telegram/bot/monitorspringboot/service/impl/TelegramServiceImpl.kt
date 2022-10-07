@@ -59,6 +59,8 @@ class TelegramServiceImpl(
                 .build()
             try {
                 val result = execute(message)
+                val message = TelegramMessageMapper.toTelegramMessage(result)
+                telegramMessageService.save(message)
                 log.info(om.writeValueAsString(result))
             } catch (ex: TelegramApiException) {
                 log.error("Couldn't send message to Telegram: {}", ex.localizedMessage, ex)
