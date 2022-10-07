@@ -3,30 +3,30 @@ package com.glinboy.telegram.bot.monitorspringboot.mapper
 import com.glinboy.telegram.bot.monitorspringboot.entity.TelegramChat
 import com.glinboy.telegram.bot.monitorspringboot.entity.TelegramMessage
 import com.glinboy.telegram.bot.monitorspringboot.entity.TelegramUser
-import org.telegram.telegrambots.meta.api.objects.Update
+import org.telegram.telegrambots.meta.api.objects.Message
 
 class TelegramMessageMapper {
     companion object {
-        fun toTelegramMessage(update: Update?): TelegramMessage {
+        fun toTelegramMessage(message: Message?): TelegramMessage {
             return TelegramMessage(
-                update?.message?.messageId?.toLong(),
+                message?.messageId?.toLong(),
                 TelegramUser(
-                    update?.message?.from?.id,
-                    update?.message?.from?.firstName,
-                    update?.message?.from?.lastName,
-                    update?.message?.from?.userName,
-                    update?.message?.from?.languageCode,
-                    update?.message?.from?.isBot
+                    message?.from?.id,
+                    message?.from?.firstName,
+                    message?.from?.lastName,
+                    message?.from?.userName,
+                    message?.from?.languageCode,
+                    message?.from?.isBot
                 ),
                 TelegramChat(
-                    update?.message?.chat?.id,
-                    update?.message?.chat?.type,
-                    update?.message?.chat?.firstName,
-                    update?.message?.chat?.lastName,
-                    update?.message?.chat?.userName,
+                    message?.chat?.id,
+                    message?.chat?.type,
+                    message?.chat?.firstName,
+                    message?.chat?.lastName,
+                    message?.chat?.userName,
                 ),
-                update?.message?.date?.toLong(),
-                update?.message?.text
+                message?.date?.toLong(),
+                message?.text
             )
         }
     }
