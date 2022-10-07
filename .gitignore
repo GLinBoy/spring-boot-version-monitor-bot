@@ -369,3 +369,6 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,kotlin,windows,macos,linux,intellij+all,eclipse,netbeans,visualstudiocode
+
+
+src/main/resources/data-h2.sql
