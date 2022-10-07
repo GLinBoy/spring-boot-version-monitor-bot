@@ -14,7 +14,6 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 import org.telegram.telegrambots.meta.api.objects.Update
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException
 
-
 @Service
 class TelegramServiceImpl(
     private val telegramMessageService: TelegramMessageService,
@@ -39,7 +38,7 @@ class TelegramServiceImpl(
 
     override fun onUpdateReceived(update: Update?) {
         log.info(om.writeValueAsString(update))
-        val message = TelegramMessageMapper.toTelegramMessage(update)
+        val message = TelegramMessageMapper.toTelegramMessage(update?.message)
         telegramMessageService.save(message)
     }
 
