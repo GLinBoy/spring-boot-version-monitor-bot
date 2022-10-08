@@ -22,7 +22,7 @@ class LatestVersionServiceImpl(
     @EventListener(NewVersionEvent::class)
     @Transactional
     override fun updateVersion(v: NewVersionEvent) {
-        repository.deleteAllByVersionStartsWith(v.version.substring(0, v.version.lastIndexOf('.')))
+        repository.deleteAllByVersionStartsWith(v.version.substring(0, v.version.indexOf('.')))
         repository.save(LatestVersion(v.version))
     }
 }
