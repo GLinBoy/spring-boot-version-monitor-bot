@@ -6,6 +6,7 @@ import com.glinboy.telegram.bot.monitorspringboot.repository.LatestVersionReposi
 import com.glinboy.telegram.bot.monitorspringboot.service.LatestVersionService
 import org.slf4j.LoggerFactory
 import org.springframework.context.event.EventListener
+import org.springframework.core.annotation.Order
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -19,10 +20,10 @@ class LatestVersionServiceImpl(
 
     override fun isLatestVersion(v: String): Boolean = !repository.existsById(v)
 
-    @EventListener(NewVersionEvent::class)
     @Transactional
+    @EventListener(NewVersionEvent::class)
     override fun updateVersion(v: NewVersionEvent) {
-        repository.deleteAllByVersionStartsWith(v.version.substring(0, v.version.indexOf('.')))
+        repository.deleteAllByVersionStartsWith(v.version.substring(0, v.version.lastIndexOf('.')))
         repository.save(LatestVersion(v.version))
     }
 }
