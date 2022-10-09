@@ -21,6 +21,7 @@ class LatestVersionServiceImpl(
     override fun isLatestVersion(v: String): Boolean = !repository.existsById(v)
 
     @Transactional
+    @Order(1000)
     @EventListener(NewVersionEvent::class)
     override fun updateVersion(v: NewVersionEvent) {
         repository.deleteAllByVersionStartsWith(v.version.substring(0, v.version.lastIndexOf('.')))
