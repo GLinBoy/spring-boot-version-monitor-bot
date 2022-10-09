@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.telegram.telegrambots.bots.TelegramLongPollingBot
+import org.telegram.telegrambots.meta.api.methods.ParseMode
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 import org.telegram.telegrambots.meta.api.objects.Update
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException
@@ -38,8 +39,13 @@ class TelegramServiceImpl(
 
     override fun onUpdateReceived(update: Update?) {
         log.info(om.writeValueAsString(update))
-        val message = TelegramMessageMapper.toTelegramMessage(update?.message)
-        telegramMessageService.save(message)
+        if (
+            update?.message?.text?.equals("/start") == true ||
+            update?.message?.hasText() == true
+        ) {
+            val message = TelegramMessageMapper.toTelegramMessage(update.message)
+            telegramMessageService.save(message)
+        }
     }
 
     override fun publishNewVersion(version: String) {
@@ -50,12 +56,13 @@ class TelegramServiceImpl(
                     EmojiParser.parseToUnicode(
                         """
                             :sparkles: New version has been released :sparkles:
-                            :rocket: $version
+                            :rocket: * $version *
 
                             :point_right: check here: $releaseUrl$version
                         """.trimIndent()
                     )
                 )
+                .parseMode(ParseMode.MARKDOWN)
                 .build()
             try {
                 val result = execute(message)
