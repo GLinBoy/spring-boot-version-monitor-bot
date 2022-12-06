@@ -1,6 +1,6 @@
 package com.glinboy.telegram.bot.monitorspringboot.entity
 
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 data class TelegramMessage(
