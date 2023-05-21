@@ -19,21 +19,19 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException
 class TelegramServiceImpl(
     private val telegramMessageService: TelegramMessageService,
     private val telegramChatService: TelegramChatService,
-    private val om: ObjectMapper
-) : TelegramService, TelegramLongPollingBot() {
-
-    private val log = LoggerFactory.getLogger(this::class.java)
+    private val om: ObjectMapper,
 
     @Value("\${application.secret.telegram-token}")
-    lateinit var token: String
+    private val token: String
+) : TelegramService, TelegramLongPollingBot(token) {
+
+    private val log = LoggerFactory.getLogger(this::class.java)
 
     @Value("\${application.secret.telegram-username}")
     lateinit var username: String
 
     @Value("\${application.release-url.spring-boot}")
     lateinit var releaseUrl: String
-
-    override fun getBotToken(): String = token
 
     override fun getBotUsername(): String = username
 
@@ -66,8 +64,8 @@ class TelegramServiceImpl(
                 .build()
             try {
                 val result = execute(message)
-                val message = TelegramMessageMapper.toTelegramMessage(result)
-                telegramMessageService.save(message)
+                val msg = TelegramMessageMapper.toTelegramMessage(result)
+                telegramMessageService.save(msg)
                 log.info(om.writeValueAsString(result))
             } catch (ex: TelegramApiException) {
                 log.error("Couldn't send message to Telegram: {}", ex.localizedMessage, ex)
