@@ -17,7 +17,7 @@ repositories {
     mavenCentral()
 }
 
-val telegrambotsVersion = "6.7.0"
+val telegrambotsVersion = "6.8.0"
 val emojiVersion = "5.1.1"
 
 dependencies {
