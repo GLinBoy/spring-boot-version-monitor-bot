@@ -20,6 +20,8 @@ repositories {
 val telegrambotsVersion = "6.9.7.1"
 val emojiVersion = "5.1.1"
 
+defaultTasks("bootRun")
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
