@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 
-abstract class GenericServiceImpl<T, ID, R : JpaRepository<T, ID>>(
+abstract class GenericServiceImpl<T : Any, ID : Any, R : JpaRepository<T, ID>>(
     private val repository: R
 ) : GenericService<T, ID> {
 
