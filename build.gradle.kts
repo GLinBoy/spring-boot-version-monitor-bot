@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.4.3"
+    id("org.springframework.boot") version "3.4.4"
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
@@ -30,6 +30,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.telegram:telegrambots-spring-boot-starter:$telegrambotsVersion")
     implementation("com.vdurmont:emoji-java:$emojiVersion")
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
+    implementation("com.fasterxml.jackson.module:jackson-module-jakarta-xmlbind-annotations:2.17.2")
     runtimeOnly("com.h2database:h2")
     runtimeOnly("org.postgresql:postgresql")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
