@@ -3,7 +3,7 @@ package com.glinboy.telegram.bot.monitorspringboot.client.impl
 import com.glinboy.telegram.bot.monitorspringboot.client.SpringClient
 import com.glinboy.telegram.bot.monitorspringboot.dto.SpringResponseDTO
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.web.client.RestTemplateBuilder
+import org.springframework.boot.restclient.RestTemplateBuilder
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 
